@@ -1,7 +1,18 @@
+import random
+
 #  A가 영어 단어를 1개 생각한다.
-word = "man"
+f = open("voca.txt","r",encoding='UTF-8')
+raw_data = f.read()
+f.close()
+print(raw_data.split("\n")[-1])
+data_list = raw_data.split("\n")
+data_list = data_list[:-1]
+while True:
+    r_index = random.randrange(0,len(data_list))
+    word = data_list[r_index].replace(u"\xa0", u" ").split(" ")[1]
+    if len(word) <= 6 :break
 word = word.upper()
-print(word)
+
 #  단어의 글자 수만큼 밑줄을 긋는다.
 word_show = "_"*len(word)
 print(word_show)
@@ -32,3 +43,4 @@ while True:
     if try_num == 7 : break
     #  단어가 먼저 완성되면 단어를 맞힌 사람 B가 이긴다.
     if word_show.find("_") == -1: break
+print(word)
